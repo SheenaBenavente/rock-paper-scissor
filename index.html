@@ -3,34 +3,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./js/javascript.js"></script>
     <link rel="stylesheet" href="./styles/style.css">
-
-    <link rel = "stylesheet" href= ""> 
-    <title>Rock Paper Scissors</title>
+    <title>Rock, Paper, Scissors</title>
 </head>
+
 <body>
-    <div class="header">
-        <h1 class="Title">Rock Paper Scissors</h1>
-        <h2 class="Subtitle">Beat the opponent by winning 3 out of 5 games</h2>
-    </div>    
-    <div class="section">
-        <div class="rock">Rock</div>
-        <button class="button" id="rock"><img src="images/rock.png" alt="Illustration of a rock"></button>
-        <div class="Paper">Paper</div>
-        <button class="button" id="paper"><img src="images/paper.png" alt="Illustration of a sheet of paper"></button>
-        <div class="scissors">Scissors</div>
-        <button class="button" id="scissor"><img src="scissors/paper.png" alt="Illustration of scissors"></button>
-    </div>    
-    <div class="section">
-        <div class="results">
-            <div class="player-score">Your Score</div>
-            <div class="computer-score">Computer Score</div>
-        </div>    
-    </div>    
-    <div class="section">
-        <div class="message">You win!</div>
-    </div>    
-    <div class="footer">thank you</footer>
-    </body>
+    <div class="flex_container">
+        <h1>Rock, Paper, and Scissors</h1>
+        <button onclick="game()">Start Game!</button>
+        <p>
+            This is a game played in the console.
+        </p>
+    </div>
+</body>
+<script src="main.js"></script>
 </html>
