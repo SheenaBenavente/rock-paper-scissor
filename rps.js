@@ -63,7 +63,7 @@ function getResult() {
     winnerLog.innerHTML += 'Round ' + roundsPlayed + ': ' + result + '<br>';
   }
 
-  //Resets gam by clearing winner log, and clear result display
+  //Resets game by clearing winner log, and clear result display
   function resetGame() {
   winnerLog.innerHTML = '';
   resultDisplay.innerHTML = '';
