@@ -1,107 +1,71 @@
+let userChoice;
+let computerChoice;
+let result;
+let roundsPlayed = 0;
+const maxRounds = 3;
 
- //array
-let winner = [];
-const choices = ["rock", "paper", "scissor"];
- 
-function resetGame ()  {
-    winners = []
-    document.querySelector('.playerScore').textcontent = 'score: 0';
-    document.querySelector('.computerScore').textcontent = 'score: 0';
-    document.querySelector('.ties').textcontent = 'ties: 0';
-    document.querySelector('.winner').textcontent = '';
-    document.querySelector('.playerChoice').textcontent = '';
-    document.querySelector('.reset').style.display = "none";
+const resetGameBtn = document.querySelector('#reset-game');
+const computerChoiceDisplay = document.getElementById('computer_choice');
+const userChoiceDisplay = document.getElementById('user_choice');
+const resultDisplay = document.getElementById('result');
+const allChoices = document.querySelectorAll('button');
+const winnerLog = document.getElementById('score_log');
+
+//Plays game and manipulates DOM
+allChoices.forEach(choice => choice.addEventListener('click', (e) => {
+  userChoice = e.target.id;
+  userChoiceDisplay.innerHTML = userChoice;
+  generateComputerChoice();
+  getResult();
+}));
+
+//reset game pulls DOM
+resetGameBtn.addEventListener('click', function() {
+  resetGame();
+});
+
+//Generates the computer choice
+function generateComputerChoice() {
+  const randomNumber = Math.floor(Math.random() * allChoices.length);
+  if (randomNumber === 0) {
+    computerChoice = 'rock';
+  } else if (randomNumber === 1) {
+    computerChoice = 'paper';
+  } else {
+    computerChoice = 'scissors';
+  }
+  computerChoiceDisplay.innerHTML = computerChoice;
 }
 
-function startGame() {
- let imgs = document.querySelectorAll('img');
- imgs.forEach((img) =>
-    img.addEventListener("click", () => {
-        if (img.id) {
-            playRound(img.id);
-        }
-    }));
-}    
-
-function playRound(playerChoice) {
-    if(wins >= 5) {
-        return
+//Calculates results
+function getResult() {
+    roundsPlayed++;
+    if (roundsPlayed > maxRounds) {
+      resultDisplay.innerHTML = 'Game over!';
+      return;
     }
-    const computer = computerSelect();
-    const winner = checkWinner(playerChoice, computer);
-    winners.push(winner);
-    tallyWins();
-    displayRound (playerChoice,computerChoice,winner);
-    wins = checkWins()
-        if(wins ==5){
-            displayEnd()
-            //display the button to visible
-            //change the button to visible
-            //change the text to display winner
-        }
-}
-
-function displayEnd() {
-    let playerWins = winners.filter((item) == 'player').length;
-    if(playerWins == 5){
-        document.querySelector('.winner').textcontent = 'you won 5 rounds. rad.'
-    } else { document.querySelector('.winner').textcontent = 'you lost!'
-    document.querySelector('.reset').style.display = 'flex';
-}
-}
-
-
-function displayRoundWinner(winner) {
-    document.querySelector('.playerChoice').textContent = `you choose: ${playerChoice,charAt(0).toUpperCase() + playerChoice.slice(1)}`
-    document.querySelector('.computerChoice').textContent = `The computer choose: ${playerChoice,charAt(0).toUpperCase() + computerChoice.slice(1)}`
-    document.querySelector('.winner').textcontent = `round winner: ${winner}`;
-}
-
-
-function tallyWins () {
-    const pWinCount = winners.filter((item) => item == 'Player').length;
-    const cWinCount = winners.filter((item) => item == 'Computer').length;
-    const ties = winners.filter((item) => item == 'tie').length;
-    document.querySelectorAll('.playerScore').textcontent = `score: ${pWinCount}`;
-    document.querySelectorAll('.computerScore').textcontent = `score: ${cWinCount}`;
-    document.querySelectorAll('.tie').textcontent = `score: ${ties}`;
-
-}
-
-function computerChoice () {
-    return weaponChoices[Math.floor(Math.random() * weaponChoices.length)];
-}
- 
-function checkWins () {
-    const pWinCount = winners.filter((item) => item == 'Player').length;
-    const cWinCount = winners.filter((item) => item == 'Computer').length;
-    return Math.max(pWinCount, cWinCount)
-}
-
-function checkWinner(playerChoice, computerChoice) {
-    if (
-    (playerChoice == 'rock' && computerChoice == 'Scissors') ||
-    (playerChoice == 'paper' && computerChoice == 'rock') || 
-    (playerChoice == 'scissors' && computerChoice == 'paper')
-    )  {
-    return 'Player';
-    } else if (playerChoice == computerChoice) {
-    return 'Tie';
+    if (computerChoice === userChoice) {
+      result = 'It is a tie!';
+    } else if (computerChoice === 'rock' && userChoice === 'paper') {
+      result = 'You win';
+    } else if (computerChoice === 'rock' && userChoice === 'scissors') {
+      result = 'You lose';
+    } else if (computerChoice === 'paper' && userChoice === 'scissors') {
+      result = 'You win';
+    } else if (computerChoice === 'paper' && userChoice === 'rock') {
+      result = 'You lose';
+    } else if (computerChoice === 'scissors' && userChoice === 'rock') {
+      result = 'You win';
     } else {
-    return 'Computer';
+      result = 'You lose';
     }
-}
+    resultDisplay.innerHTML = result;
+    winnerLog.innerHTML += 'Round ' + roundsPlayed + ': ' + result + '<br>';
+  }
 
-function logWins() {
-    let playerWins = winners.filter((item) => item == 'Player').length;
-    let computerWins = winners.filter((item) => item == 'Computer').length;
-    let ties = winners.filter((item) => item == 'tie').length;
+  //Resets gam by clearing winner log, and clear result display
+  function resetGame() {
+  winnerLog.innerHTML = '';
+  resultDisplay.innerHTML = '';
+  roundsPlayed = 0;
 }
- 
-function DisplayRound(playerChoice,computerChoice,winner) {
-    document.querySelector('.playerChoice').textcontent = `you choose` ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)};
-    document.querySelector('.computerChoice').textcontent = `you choose` ${playerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)};
-    document.querySelector('.ties').textcontent = `you choose` ${ties}`;
-}
-
-startGame();
