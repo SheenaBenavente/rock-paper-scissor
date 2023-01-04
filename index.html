@@ -4,38 +4,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Rock, Paper, Scissors</title>
+    <title>Rock, Paper, and scissors</title>
 </head>
-
 <body>
-<div class="score">
-    <h1 class="ties">"Ties: 0"</h1>
-</div>        
-<div class="winnerDiv">
-    <h1 class= "winner"></h1>
-    <button class="reset" onclick="resetGame()">Play again?</button>
-</div>
 
-<div class="playerSelection">
-    <h3 class="playerChoice"></h3>
-    <h3 class="playerScore">Score: 0</h3>   
-    <div class="playerImgs">
-        <img src="./images/rock.png" alt="Rock" class=pImg id="rock"/>   
-        <img src="./images/scissors.png" alt="Scissors" class=pImg id="scissors"/>   
-        <img src="./images/paper.png" alt="Paper" class=pImg id="paper"/> 
-    </div> 
-
-    <div class="computerSelection">
-        <h3 class="computerChoice"></h3>
-        <h3 class="computerScore">Score: 0</h3>   
-        <div class="computerImgs">
-            <img src="./images/rock.png" alt="Rock" class=rock/>   
-            <img src="./images/scissors.png" alt="Scissors" class=scissors/>   
-            <img src="./images/paper.png" alt="Paper" class=paper/> 
-        </div> 
+    <div id="outputs">
+        <h2>Computer Choice: <span id ="computer_choice"></span></h2>
+        <h2>User Choice: <span id ="user_choice"></span></h2>
+        <h2>Result: <span id ="result"></span></h2>
     </div>
-</div>
 
+    <div id="buttons">
+        <button id="rock">Rock</button> 
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
+
+    <div id="scoreboard">
+        <h2>Scores:</h2>
+        <ul id="score_log"></ul>
+    </div>
+
+    <button id="reset-game">Reset</button>
+
+<script src="script.js" charset="utf-8"></script>
+    
 </body>
-<script src= "rps.js"><script>
 </html>
