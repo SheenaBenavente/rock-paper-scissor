@@ -53,12 +53,12 @@ function validateInput(choice) {
 
 // checks winner based on if/else and returns
 function checkWinner(playerChoice, computerChoice) {
-    if (playerChoice == computerChoice) {
+    if (playerChoice === computerChoice) {
     return 'tie'; 
     } else if (
-    (playerChoice == 'rock' && computerChoice == 'scissors') ||
-    (playerChoice == 'paper' && computerChoice == 'rock') || 
-    (playerChoice == 'scissors' && computerChoice == 'paper')
+    (playerChoice === 'rock' && computerChoice === 'Scissors') ||
+    (playerChoice === 'paper' && computerChoice === 'rock') || 
+    (playerChoice === 'scissors' && computerChoice === 'paper')
     ) {
     return 'Player';
     } else {
@@ -85,3 +85,8 @@ function logRound (playerChoice, computerChoice, winner, round) {
     console.log(winner, 'Won the round');
     console.log('------------')
 }
+
+
+
+
+
